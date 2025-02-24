@@ -1,9 +1,11 @@
-name: ddev-backstopjs
+name: backstop
+
+ddev_version_constraint: '>= v1.23.5'
 
 pre_install_actions:
-  - test -d ${DDEV_APPROOT}/tests/backstop || mkdir -p ${DDEV_APPROOT}/tests/backstop
-  - test -f "${DDEV_APPROOT}/tests/backstop/.gitignore" || printf "## ddev-generated\n**/bitmaps_test\n**/html_report\n" > ${DDEV_APPROOT}/tests/backstop/.gitignore
-  - grep -q "## ddev-generated" ${DDEV_APPROOT}/tests/backstop/.gitignore && printf "## ddev-generated\n**/bitmaps_test\n**/html_report\n" > ${DDEV_APPROOT}/tests/backstop/.gitignore || true
+  - test -d ${DDEV_APPROOT}/${BACKSTOP_TESTDIR:-tests/backstop} || mkdir -p ${DDEV_APPROOT}/${BACKSTOP_TESTDIR:-tests/backstop}
+  - test -f "${DDEV_APPROOT}/${BACKSTOP_TESTDIR:-tests/backstop}/.gitignore" || printf "## ddev-generated\n**/bitmaps_test\n**/html_report\n" > ${DDEV_APPROOT}/${BACKSTOP_TESTDIR:-tests/backstop}/.gitignore
+  - grep -q "## ddev-generated" ${DDEV_APPROOT}/${BACKSTOP_TESTDIR:-tests/backstop}/.gitignore && printf "## ddev-generated\n**/bitmaps_test\n**/html_report\n" > ${DDEV_APPROOT}/${BACKSTOP_TESTDIR:-tests/backstop}/.gitignore || true
 
 
 # list of files and directories listed that are copied into project .ddev directory
