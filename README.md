@@ -112,10 +112,16 @@ See: [ddev FAQ: Can different projects communicate with each other?](https://dde
 
 
 ### Change backstop tests directory
-Per default the backstop directory containing backstop config etc. is expected in your project directory (besides the
+Per default, the backstop directory containing backstop config etc. is expected in your project directory (besides the
 .ddev folder) in the directory *tests/backstop*.
 
-If you want to change that edit the file [docker-compose.backstop.yaml](docker-compose.backstop.yaml) and
-change the line in volumes to the path you want to use, move the files to the new directory and restart ddev.
+If you want to change that, create `.ddev/.env.backstop` and set the value of `BACKSTOP_TESTDIR` to the desired path 
+relative to the project root.  You can also do this with the DDEV commandline:
 
-Make sure to remove the #ddev-generated line from the file to prevent ddev from making changes to it.
+```sh
+ddev dotenv set .ddev/.env.backstop --backstop-testdir your/new/path
+```
+Depending on your project requirements and gitignore configuration, you may want to add `.ddev/.env.backstop` to 
+your repository.
+
+DDEV v1.23.5+ is required. See [Creating an Additional Service for `ddev add-on`](https://ddev.readthedocs.io/en/stable/users/extend/additional-services/#creating-an-additional-service-for-ddev-add-on) for more details.
